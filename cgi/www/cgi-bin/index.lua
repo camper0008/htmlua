@@ -1,3 +1,4 @@
+#!/usr/bin/env lua
 local htmlua = require "htmlua"
 require "htmlua.elements"
 
