@@ -4,22 +4,19 @@ local html, head, title, body, h1, p, style = htmlua.gen("html", "head", "title"
 local doc = html {
     lang = "en";
     head {
-        title {
-            "My document";
-        };
+        title "My document";
         style [[
+            html {
+                color-scheme: light dark;
+            }
             p {
                 font-size: 16px;
             }  
         ]];
     };
     body {
-        h1 {
-            "My document"
-        };
-        p {
-            "Here comes some cool text or something"
-        };
+        h1 "My document";
+        p "Here comes some cool text or something";
         p {
             class = "quote\"test";
             "Haven't really decided yet <p>";
