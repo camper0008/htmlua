@@ -30,6 +30,9 @@ end
 
 function htmlua.render(node, sanitize)
     local sanitize = sanitize == nil and true or sanitize;
+    if node.tag == "script" or node.tag == "style" then
+        sanitize = false;
+    end
     if type(node) ~= "table" then
         local node = tostring(node);
         if sanitize then
@@ -37,19 +40,6 @@ function htmlua.render(node, sanitize)
         end
         return node;
     end
-    -- local function dump(o, ind)
-    --     local increment = 2;
-    --     if type(o) == "table" then
-    --         local str = "{\n";
-    --         for i, v in pairs(o) do
-    --             str = str .. (" "):rep(ind + increment) .. i .. " = " .. dump(v, ind + increment) .. "\n";
-    --         end
-    --         return str .. (" "):rep(ind) .. "}"
-    --     else
-    --         return o
-    --     end
-    -- end
-    -- print(dump(node, 0));
 
     local children = {};
     local attributes = {};
