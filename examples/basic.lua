@@ -1,12 +1,17 @@
 local htmlua = require("htmlua")
-local html, head, title, body, h1, p = htmlua.gen("html", "head", "title", "body", "h1", "p");
+local html, head, title, body, h1, p, style = htmlua.gen("html", "head", "title", "body", "h1", "p", "style");
 
 local doc = html {
     lang = "en";
     head {
         title {
             "My document";
-        }
+        };
+        style [[
+            p {
+                font-size: 16px;
+            }  
+        ]];
     };
     body {
         h1 {

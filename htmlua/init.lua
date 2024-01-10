@@ -41,22 +41,26 @@ function htmlua.render(node, sanitize)
         return node;
     end
 
-    local children = {};
-    local attributes = {};
+    if type(node.inner) == "table" then
+        local children = {};
+        local attributes = {};
 
-    for i, v in pairs(node.inner) do
-        if type(i) == "string" then
-            attributes[i] = v;
+        for i, v in pairs(node.inner) do
+            if type(i) == "string" then
+                attributes[i] = v;
+            end
+
+            if type(i) == "number" then
+                children[#children + 1] = htmlua.render(v, sanitize);
+            end
         end
 
-        if type(i) == "number" then
-            children[#children + 1] = htmlua.render(v, sanitize);
-        end
+        local formatted_attr = format_attributes(attributes);
+
+        return ("<%s%s>%s</%s>"):format(node.tag, formatted_attr, table.concat(children, ""), node.tag)
+    else
+        return ("<%s>%s</%s>"):format(node.tag, node.inner, node.tag)
     end
-
-    local formatted_attr = format_attributes(attributes);
-
-    return ("<%s%s>%s</%s>"):format(node.tag, formatted_attr, table.concat(children, ""), node.tag)
 
 end
 
