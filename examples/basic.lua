@@ -1,5 +1,5 @@
 local htmlua = require("htmlua")
-local html, head, title, body, h1, p, style = htmlua.gen("html", "head", "title", "body", "h1", "p", "style");
+require("htmlua.elements")
 
 local doc = html {
     lang = "en";

@@ -1,5 +1,6 @@
 local node = {};
 
+
 function node.init(tag, inner)
     return {
         tag = tag;
